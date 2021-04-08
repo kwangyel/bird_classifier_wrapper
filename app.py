@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import requests
 import json
 import numpy as np
