@@ -5,7 +5,7 @@ from io import BytesIO
 import glob
 import base64
 from PIL import Image
-import cv2
+# import cv2
 from flask import Flask,request
 
 app = Flask(__name__)
@@ -24,7 +24,8 @@ def process_image(encoded_image):
     decoded_image = base64.b64decode(encoded_image)
     nparr = Image.open(BytesIO(decoded_image))
     np_image = np.array(nparr)
-    np_image = cv2.resize(np_image,(244,244))
+    # np_image = cv2.resize(np_image,(244,244))
+    np_image = np.resize(np_image,(244,244))
     np_image = np_image[np.newaxis,...]
     np_image = np_image/255
 
