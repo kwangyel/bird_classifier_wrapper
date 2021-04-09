@@ -7,8 +7,10 @@ import base64
 from PIL import Image
 import cv2
 from flask import Flask,request,jsonify
+from flask_cors import CORS,cross_origin
 
 app = Flask(__name__)
+CORS(app, support_credentials=True)
 
 url = "http://172.30.20.22:8501/v1/models/img_classifier:predict"
 # url = "https://zhichar-pling.ddnsfree.com/classifier//img_classifier:predict"
@@ -50,12 +52,12 @@ def index():
     return "Welcome to bird classifier APi"
 
 @app.route('/predict',methods=['POST'])
+@cross_origin()
 def predict():
     request_data = request.get_json()
     image_data= request_data['image']
     output = process_image(image_data)
     response = jsonify(output)
-    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 if __name__ == '__main__':
