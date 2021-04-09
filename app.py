@@ -54,7 +54,9 @@ def predict():
     request_data = request.get_json()
     image_data= request_data['image']
     output = process_image(image_data)
-    return output
+    response = jsonify(output)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 if __name__ == '__main__':
     app.run()
