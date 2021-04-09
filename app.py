@@ -6,7 +6,7 @@ import glob
 import base64
 from PIL import Image
 import cv2
-from flask import Flask,request
+from flask import Flask,request,jsonify
 
 app = Flask(__name__)
 
@@ -41,7 +41,8 @@ def process_image(encoded_image):
         predict_list.append(obj)
 
     # predict_DO = {"predicted":prediction,"probability":prediction_probability*100}
-    predict_DO = json.dumps(predict_list)
+    # predict_DO = json.dumps(predict_list)
+    predict_DO = {"predictions":predict_list}
     return predict_DO
 
 @app.route('/')
