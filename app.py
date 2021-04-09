@@ -10,7 +10,7 @@ from flask import Flask,request,jsonify
 from flask_cors import CORS,cross_origin
 
 app = Flask(__name__)
-CORS(app, support_credentials=True)
+CORS(app)
 
 url = "http://172.30.20.22:8501/v1/models/img_classifier:predict"
 # url = "https://zhichar-pling.ddnsfree.com/classifier//img_classifier:predict"
